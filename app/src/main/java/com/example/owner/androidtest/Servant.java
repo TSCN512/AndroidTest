@@ -1,5 +1,6 @@
 package com.example.owner.androidtest;
 
+import android.util.Log;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -92,6 +93,7 @@ public class Servant
         }
         catch (IOException e)
         {
+            Log.d("SERVANT", "The IOException");
             System.out.println("Error " + e.getMessage());
         }
 
