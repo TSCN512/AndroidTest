@@ -77,7 +77,7 @@ public class Servant
             if (x == 83)  //SERVANT ID 83, 149, 151, 152 HAVE INCOMPATIBLE SPIRIT ORIGINS
             {
                 special = true;
-                setSpecialMsg("SPIRIT ORIGIN OBSCURED, KING OF MAGES DETECTED");
+                setSpecialMsg("UNREADABLE SPIRIT ORIGIN, KING OF MAGES DETECTED");
             }
             else if (x > 106) // NA known list only includes up to 106
             {
@@ -117,6 +117,7 @@ public class Servant
             String info = "";
             for (String value : stats)
                 info += value + '\n';
+            info = info.trim();
             return info;
         }
         else
