@@ -9,6 +9,7 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -26,6 +27,7 @@ public class ServantStats extends AppCompatActivity
         final EditText ET = (EditText) findViewById(R.id.editText);
         ET.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_NUMBER);
         final Button submit = (Button) findViewById(R.id.servantButton);
+        final TextView TV = (TextView) findViewById(R.id.textView);
         submit.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -35,7 +37,7 @@ public class ServantStats extends AppCompatActivity
                 //String ID = ET.getText().toString();
                 int ID = Integer.parseInt(ET.getText().toString());
                 Servant newServant = new Servant(ID);
-                submit.setText(newServant.toString());
+                TV.setText(newServant.toString());
             }
         });
     }
