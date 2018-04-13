@@ -60,7 +60,16 @@ public class Servant
             System.out.println(title);
             Elements links = doc.select(myQuery);
             String atk = links.toString();//.substring(links.toString().indexOf("ATK Lv.1"));
-            String atk2 = links.toString().replaceAll("<[^>]*>", "").replaceAll("\n[^a-zA-Z_0-9｢]+\n", "\n"); //servant 91 has a unique name beginning with ｢
+            String atk2 = links.toString();
+            if(!atk2.contains("★★★★★") && !atk2.contains("★★★★") && !atk2.contains("★★★"))
+            {
+                if (atk2.contains("★★"))
+                    atk2 = atk2.replace("★★", "★★ UC");
+                else if (atk2.contains("★"))
+                    atk2 = atk2.replace("★", "★ C");
+            }
+
+            atk2 = atk2.replaceAll("<[^>]*>", "").replaceAll("\n[^a-zA-Z_0-9｢?]+\n", "\n"); //servant 91 has a unique name beginning with ｢
             atk2 = atk2.replaceFirst("\n.*\n", "\n");
             atk2 = atk2.replaceAll("\n.*\n", "\n");
             atk2 = atk2.replaceFirst("\n", "");
