@@ -86,7 +86,7 @@ public class Servant
             if (x == 83)  //SERVANT ID 83, 149, 151, 152 HAVE INCOMPATIBLE SPIRIT ORIGINS
             {
                 special = true;
-                setSpecialMsg("UNREADABLE SPIRIT ORIGIN, KING OF MAGES DETECTED");
+                setSpecialMsg("CLASS: GRAND CASTER  \nNAME: KING SOLOMON, KING OF MAGES");
             }
             else if (x > 106) // NA known list only includes up to 106
             {
