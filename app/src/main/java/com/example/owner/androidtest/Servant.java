@@ -13,7 +13,7 @@ public class Servant
     String[] stats = new String[16];
     String traits;
     String specialMsg;
-
+    String imageURL;
     public Servant(int ID)
     {
         String[] myArray = {"Name: ","Alias: ","Class: ", "ID: ", "Rarity: ", "Cost: ", "Max Level Cap: ", "Starting ATK: ", "Starting HP: ", "Max Level ATK: ", "Max Level HP: ", "","","",""};
@@ -35,7 +35,7 @@ public class Servant
             {
                 String webpage = "https://fate-go.cirnopedia.org/";
                 String webpage_servant = webpage + "servant_profile.php?servant=" + x;
-                String webpage_portrait = webpage + "icons/servant_card/" + String.format("%03d", x) + "1.jpg";
+                setImageURL(webpage + "icons/servant_card/" + String.format("%03d", x) + "1.jpg");
                 String myQuery;
                 switch (x)  //this switch statement accommodates the different webpage layouts
                 {
@@ -121,6 +121,14 @@ public class Servant
 
     }
 
+    public void setImageURL(String loc)
+    {
+        this.imageURL = loc;
+    }
+    public String getImageURL()
+    {
+        return this.imageURL;
+    }
     public void setSpecialMsg(String specialMsg)
     {
         this.specialMsg = specialMsg;
