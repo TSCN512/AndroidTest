@@ -13,7 +13,7 @@ import android.widget.TextView;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-
+import android.os.AsyncTask;
 import java.io.IOException;
 
 public class ServantStats extends AppCompatActivity

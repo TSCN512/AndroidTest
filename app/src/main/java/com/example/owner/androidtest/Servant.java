@@ -33,7 +33,9 @@ public class Servant
             }
             else
             {
-                String webpage = "https://fate-go.cirnopedia.org/servant_profile.php?servant=" + x;
+                String webpage = "https://fate-go.cirnopedia.org/";
+                String webpage_servant = webpage + "servant_profile.php?servant=" + x;
+                String webpage_portrait = webpage + "icons/servant_card/" + String.format("%03d", x) + "1.jpg";
                 String myQuery;
                 switch (x)  //this switch statement accommodates the different webpage layouts
                 {
@@ -71,13 +73,16 @@ public class Servant
                 }
 
 
-                Document doc = Jsoup.connect(webpage).get();
-                String title = doc.title();
-                System.out.println(title);
+                Document doc = Jsoup.connect(webpage_servant).get();
+
                 Elements links = doc.select(myQuery);
+                //traits grabbing happens here
                 Elements link2 = doc.select(".status > tbody:nth-child(2) > tr:nth-child(8) > td:nth-child(2)");
                 String traits = link2.toString().replaceAll("<[^>]*>","");
                 setTraits(traits);
+                //IMG grabbbing here
+               //Elements portrait = doc.select("a.fancybox:nth-child(8) > div:nth-child(1)");
+
                 String atk = links.toString();//.substring(links.toString().indexOf("ATK Lv.1"));
                 String atk2 = links.toString();
                 if(!atk2.contains("★★★★★") && !atk2.contains("★★★★") && !atk2.contains("★★★"))
