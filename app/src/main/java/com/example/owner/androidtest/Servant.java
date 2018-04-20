@@ -26,7 +26,7 @@ public class Servant
                 special = true;
                 setSpecialMsg("CLASS: GRAND CASTER  \nNAME: KING SOLOMON, KING OF MAGES\nREMAINING SPIRIT GRAPH DATA INCOMPATIBLE WITH CHALDEA PROTOCOLS");
             }
-            else if (x > 106) // NA known list only includes up to 106
+            else if (x > 110) // NA known list only includes up to 106
             {
                 special = true;
                 setSpecialMsg("SPIRIT ORIGIN UNDISCOVERED BY CHALDEA NORTH AMERICAN BRANCH");
