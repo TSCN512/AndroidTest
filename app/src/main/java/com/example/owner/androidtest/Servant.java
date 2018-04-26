@@ -92,7 +92,7 @@ public class Servant
                     else if (atk2.contains("★"))
                         atk2 = atk2.replace("★", "★ C");
                 }
-
+                atk2 = atk2.replace("---", "Zero Star");
                 atk2 = atk2.replaceAll("<[^>]*>", "").replaceAll("\n[^a-zA-Z_0-9｢?]+\n", "\n"); //servant 91 has a unique name beginning with ｢
                 atk2 = atk2.replaceFirst("\n.*\n", "\n");
                 atk2 = atk2.replaceAll("\n.*\n", "\n");
@@ -101,10 +101,14 @@ public class Servant
                 String myArray2[] = atk2.split("\n");
                 for (int j = 0; j < myArray.length; j++)
                 {
-                    if (x == 1 && j == 1) //Mash has fused with an unknown heroic spirit, true name unknown
-                        myArray[j] = "TRUE NAME UNKNOWN";
+                    if(j==1)
+                        myArray[j] += myArray2[j].split(">")[myArray2[j].split(">").length-1].trim(); //dirty looking
+                    else if(x==107 && j==4)
+                            myArray[j] += "---";
                     else
                         myArray[j] += myArray2[j].trim();
+                    if (x == 1 && j == 1) //Mash has fused with an unknown heroic spirit, true name unknown
+                        myArray[j] = "TRUE NAME UNKNOWN";
                 }
                 //System.out.println(myArray[3]);
 
