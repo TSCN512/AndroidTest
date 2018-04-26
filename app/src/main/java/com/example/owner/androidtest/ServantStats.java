@@ -21,7 +21,7 @@ import java.io.IOException;
 
 public class ServantStats extends AppCompatActivity
 {
-    Bitmap bitmap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -38,16 +38,21 @@ public class ServantStats extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                //boolean isInt = true;
-                //String ID = ET.getText().toString();
+
                 int ID = Integer.parseInt(ET.getText().toString());
-                Servant newServant = new Servant(ID);
-                TV.setText(newServant.toString());
-                Portrait pic = new Portrait();
-                pic.setImage(IV);
-                pic.execute(newServant.getImageURL());
-
-
+                if(ID < 1)
+                {
+                    TV.setText("Try Again, Servant IDs start at 1.");
+                    IV.setImageResource(android.R.color.transparent);
+                }
+                else
+                {
+                    Servant newServant = new Servant(ID);
+                    TV.setText(newServant.toString());
+                    Portrait pic = new Portrait();
+                    pic.setImage(IV);
+                    pic.execute(newServant.getImageURL());
+                }
             }
         });
     }
