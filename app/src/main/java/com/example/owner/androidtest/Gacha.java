@@ -3,6 +3,7 @@ package com.example.owner.androidtest;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import org.jsoup.Jsoup;
@@ -39,12 +40,14 @@ public class Gacha
     TextView TV1;
     TextView TV2;
     TextView TV3;
-    public Gacha(ProgressBar progress, TextView tv1, TextView tv2, TextView tv3)
+    Button theButton;
+    public Gacha(ProgressBar progress, TextView tv1, TextView tv2, TextView tv3, Button myButton)
     {
         bar = progress;
         TV1 = tv1;
         TV2 = tv2;
         TV3 = tv3;
+        theButton = myButton;
     }
 
 

@@ -2,6 +2,7 @@ package com.example.owner.androidtest;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Button;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -11,6 +12,8 @@ import java.io.IOException;
 public class Gacha_task extends AsyncTask<Gacha, Void, Void>
 {
     Gacha myGacha;
+
+
     @Override
     public Void doInBackground(Gacha ... gachas)
     {
@@ -37,8 +40,7 @@ public class Gacha_task extends AsyncTask<Gacha, Void, Void>
                             myGacha.card_id = myGacha.valid5Servants[myGacha.rand.nextInt(myGacha.valid5Servants.length)];
                             theQuery = "[href=servant_profile.php?servant=" + String.format("%03d", myGacha.card_id) + "]";
                             name = ServantList.select(theQuery);
-                            name_tidy = name.toString().replaceAll("<[^>]*>", "").replaceAll("/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[一-龯]+|[ａ-ｚＡ-Ｚ０-９]+[々〆〤]+/u", "");
-                            name_tidy = name_tidy.replaceAll("[〕〔Ⅱ･＝々Ｘ]", "");
+                            name_tidy = name.toString().replaceAll("<a href.+<br>","").replaceAll("</a>","").replaceAll("amp;","");
                             myGacha.SSR_Servants.add(name_tidy.trim());
                             result += name_tidy.trim() + ", ";
                         }
@@ -51,8 +53,7 @@ public class Gacha_task extends AsyncTask<Gacha, Void, Void>
                             myGacha.card_id = myGacha.valid4Servants[myGacha.rand.nextInt(myGacha.valid4Servants.length)];
                             theQuery = "[href=servant_profile.php?servant=" + String.format("%03d", myGacha.card_id) + "]";
                             name = ServantList.select(theQuery);
-                            name_tidy = name.toString().replaceAll("<[^>]*>", "").replaceAll("/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[一-龯]+|[ａ-ｚＡ-Ｚ０-９]+[々〆〤]+/u", "");
-                            name_tidy = name_tidy.replaceAll("[〕〔Ⅱ･＝々Ｘ]", "");
+                            name_tidy = name.toString().replaceAll("<a href.+<br>","").replaceAll("</a>","").replaceAll("amp;","");
                             myGacha.SR_Servants.add(name_tidy.trim());
                             result += name_tidy.trim() + ", ";
                         }
@@ -65,8 +66,7 @@ public class Gacha_task extends AsyncTask<Gacha, Void, Void>
                             myGacha.card_id = myGacha.valid3Servants[myGacha.rand.nextInt(myGacha.valid3Servants.length)];
                             theQuery = "[href=servant_profile.php?servant=" + String.format("%03d", myGacha.card_id) + "]";
                             name = ServantList.select(theQuery);
-                            name_tidy = name.toString().replaceAll("<[^>]*>", "").replaceAll("/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[一-龯]+|[ａ-ｚＡ-Ｚ０-９]+[々〆〤]+/u", "");
-                            name_tidy = name_tidy.replaceAll("[〕〔Ⅱ･＝々Ｘ]", "");
+                            name_tidy = name.toString().replaceAll("<a href.+<br>","").replaceAll("</a>","").replaceAll("amp;","");
                             result += name_tidy.trim() + ", ";
 
                         }
@@ -80,8 +80,7 @@ public class Gacha_task extends AsyncTask<Gacha, Void, Void>
                             myGacha.card_id = myGacha.valid5CEs[myGacha.rand.nextInt(myGacha.valid5CEs.length)];
                             theQuery = "[href=craft_essence_profile.php?essence=" + String.format("%03d", myGacha.card_id) + "#nav]";
                             name = CEList.select(theQuery);
-                            name_tidy = name.toString().replaceAll("<[^>]*>", "").replaceAll("/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[一-龯]+|[ａ-ｚＡ-Ｚ０-９]+[々〆〤]+/u", "");
-                            name_tidy = name_tidy.replaceAll("[〕〔Ⅱ･＝々Ｘ]", "");
+                            name_tidy = name.toString().replaceAll("><font.+<br","").replaceAll("</a>","").replaceAll("<a class=.+>","").replaceAll("amp;","");
                             myGacha.SSR_CEs.add(name_tidy.trim());
                             result += name_tidy.trim() + ", ";
                         }
@@ -94,8 +93,7 @@ public class Gacha_task extends AsyncTask<Gacha, Void, Void>
                             myGacha.card_id = myGacha.valid4CEs[myGacha.rand.nextInt(myGacha.valid4CEs.length)];
                             theQuery = "[href=craft_essence_profile.php?essence=" + String.format("%03d", myGacha.card_id) + "#nav]";
                             name = CEList.select(theQuery);
-                            name_tidy = name.toString().replaceAll("<[^>]*>", "").replaceAll("/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[一-龯]+|[ａ-ｚＡ-Ｚ０-９]+[々〆〤]+/u", "");
-                            name_tidy = name_tidy.replaceAll("[〕〔Ⅱ･＝々Ｘ]", "");
+                            name_tidy = name.toString().replaceAll("><font.+<br","").replaceAll("</a>","").replaceAll("<a class=.+>","").replaceAll("amp;","");
                             result += name_tidy.trim() + ", ";
                         }
                         myGacha.pulls[i] = 0;
@@ -107,8 +105,7 @@ public class Gacha_task extends AsyncTask<Gacha, Void, Void>
                             myGacha.card_id = myGacha.valid3CEs[myGacha.rand.nextInt(myGacha.valid3CEs.length)];
                             theQuery = "[href=craft_essence_profile.php?essence=" + String.format("%03d", myGacha.card_id) + "#nav]";
                             name = CEList.select(theQuery);
-                            name_tidy = name.toString().replaceAll("<[^>]*>", "").replaceAll("/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[一-龯]+|[ａ-ｚＡ-Ｚ０-９]+[々〆〤]+/u", "");
-                            name_tidy = name_tidy.replaceAll("[〕〔Ⅱ･＝々Ｘ]", "");
+                            name_tidy = name.toString().replaceAll("><font.+<br","").replaceAll("</a>","").replaceAll("<a class=.+>","").replaceAll("amp;","");
                             result += name_tidy.trim() + ", ";
                         }
                         myGacha.pulls[i] = 0;
@@ -141,5 +138,6 @@ public class Gacha_task extends AsyncTask<Gacha, Void, Void>
         {
             myGacha.TV2.append(value + '\n');
         }
+        myGacha.theButton.setEnabled (true);
     }
 }

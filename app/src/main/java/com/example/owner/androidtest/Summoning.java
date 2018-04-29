@@ -23,13 +23,15 @@ public class Summoning extends Activity {
         final TextView TV3 = (TextView) findViewById(R.id.summoning_tv3);
         final ProgressBar progress = (ProgressBar)findViewById(R.id.progressBar);
         //final ImageView IV = (ImageView) findViewById(R.id.imageView);
-        final Gacha myGacha = new Gacha(progress, TV1, TV2, TV3);
+        final Gacha myGacha = new Gacha(progress, TV1, TV2, TV3, summon10);
 
         summon10.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
+                summon10.setEnabled (false);
+
                 myGacha.tenPull();
                 new Gacha_task().execute(myGacha);
 
