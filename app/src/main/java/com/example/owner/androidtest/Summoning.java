@@ -30,30 +30,10 @@ public class Summoning extends Activity {
             @Override
             public void onClick(View view)
             {
-                TV1.setText("");
-                TV2.setText("");
-
                 myGacha.tenPull();
-                myGacha.execute();
-                try {
-                    Thread.sleep(6000);
+                new Gacha_task().execute(myGacha);
 
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                TV3.setText(myGacha.getLastResult());
-                for (String value : myGacha.getSSR_Servants())
-                {
-                    TV1.append(value + '\n');
-                }
-                for(String value : myGacha.getSR_Servants())
-                {
-                    TV1.append(value + '\n');
-                }
-                for(String value : myGacha.getSSR_CEs())
-                {
-                    TV2.append(value + '\n');
-                }
+
 
             }
         });
