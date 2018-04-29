@@ -4,4 +4,5 @@
     <string name="idHelp">Enter Servant ID Here</string>
     <string name="submit">Submit</string>
     <string name="portrait">A picture of the Servant</string>
+    <string name="title_activity_summoning">Summoning</string>
 </resources>

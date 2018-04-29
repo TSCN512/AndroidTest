@@ -28,8 +28,14 @@
                 android:label="@string/title_activity_servant_stats"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
-
-
+        <activity
+                android:name=".Summoning"
+                android:label="@string/title_activity_summoning"
+                android:parentActivityName=".MainActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.example.owner.androidtest.MainActivity"/>
+        </activity>
     </application>
 
 </manifest>
