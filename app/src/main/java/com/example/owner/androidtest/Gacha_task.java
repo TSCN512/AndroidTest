@@ -41,7 +41,10 @@ public class Gacha_task extends AsyncTask<Gacha, Void, Void>
                             theQuery = "[href=servant_profile.php?servant=" + String.format("%03d", myGacha.card_id) + "]";
                             name = ServantList.select(theQuery);
                             name_tidy = name.toString().replaceAll("<a href.+<br>","").replaceAll("</a>","").replaceAll("amp;","");
-                            myGacha.SSR_Servants.add(name_tidy.trim());
+                            if(myGacha.SSR_Servants.containsKey(name_tidy.trim()))
+                                myGacha.SSR_Servants.put(name_tidy.trim(), (int)myGacha.SSR_Servants.get(name_tidy.trim()+1));
+                            else
+                                myGacha.SSR_Servants.put(name_tidy.trim(), 1);
                             result += name_tidy.trim() + ", ";
                         }
                         myGacha.pulls[i] = 0;
@@ -54,7 +57,10 @@ public class Gacha_task extends AsyncTask<Gacha, Void, Void>
                             theQuery = "[href=servant_profile.php?servant=" + String.format("%03d", myGacha.card_id) + "]";
                             name = ServantList.select(theQuery);
                             name_tidy = name.toString().replaceAll("<a href.+<br>","").replaceAll("</a>","").replaceAll("amp;","");
-                            myGacha.SR_Servants.add(name_tidy.trim());
+                            if(myGacha.SR_Servants.containsKey(name_tidy.trim()))
+                                myGacha.SR_Servants.put(name_tidy.trim(), (int)myGacha.SR_Servants.get(name_tidy.trim()+1));
+                            else
+                                myGacha.SR_Servants.put(name_tidy.trim(), 1);
                             result += name_tidy.trim() + ", ";
                         }
                         myGacha.pulls[i] = 0;
@@ -81,7 +87,10 @@ public class Gacha_task extends AsyncTask<Gacha, Void, Void>
                             theQuery = "[href=craft_essence_profile.php?essence=" + String.format("%03d", myGacha.card_id) + "#nav]";
                             name = CEList.select(theQuery);
                             name_tidy = name.toString().replaceAll("><font.+<br","").replaceAll("</a>","").replaceAll("<a class=.+>","").replaceAll("amp;","");
-                            myGacha.SSR_CEs.add(name_tidy.trim());
+                            if(myGacha.SSR_CEs.containsKey(name_tidy.trim()))
+                                myGacha.SSR_CEs.put(name_tidy.trim(), (int)myGacha.SSR_CEs.get(name_tidy.trim()+1));
+                            else
+                                myGacha.SSR_CEs.put(name_tidy.trim(), 1);
                             result += name_tidy.trim() + ", ";
                         }
                         myGacha.pulls[i] = 0;
@@ -126,18 +135,14 @@ public class Gacha_task extends AsyncTask<Gacha, Void, Void>
     public void onPostExecute(Void result)
     {
         myGacha.TV3.setText(myGacha.getLastResult());
-        for (String value : myGacha.getSSR_Servants())
-        {
-            myGacha.TV1.append(value + '\n');
-        }
-        for(String value : myGacha.getSR_Servants())
-        {
-            myGacha.TV1.append(value + '\n');
-        }
-        for(String value : myGacha.getSSR_CEs())
-        {
-            myGacha.TV2.append(value + '\n');
-        }
+        String list = "";
+        list = myGacha.getSSR_Servants().toString().replaceAll("[{}]","").replaceAll(",","\n").replaceAll("="," x");
+        myGacha.TV1.setText(list);
+        list = myGacha.getSR_Servants().toString().replaceAll("[{}]","").replaceAll(",","\n").replaceAll("="," x");
+        myGacha.TV1.setText(list);
+        list = myGacha.getSSR_CEs().toString().replaceAll("[{}]","").replaceAll(",","\n").replaceAll("="," x");
+        myGacha.TV2.setText(list);
+
         myGacha.theButton.setEnabled (true);
     }
 }

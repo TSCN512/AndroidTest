@@ -12,6 +12,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 public class Gacha
@@ -24,10 +25,10 @@ public class Gacha
     int quartz = 0;
     int card_id;
     String last_result = "";
-    ArrayList<String> SSR_Servants = new ArrayList<>();
-    ArrayList<String> SR_Servants = new ArrayList<>();
+    HashMap SSR_Servants = new HashMap();
+    HashMap SR_Servants = new HashMap();
     //ArrayList<String> R_Servants = new ArrayList<>();
-    ArrayList<String> SSR_CEs = new ArrayList<>();
+    HashMap SSR_CEs = new HashMap();
     //ArrayList<String> SR_CEs = new ArrayList<>();
     //ArrayList<String> R_CEs = new ArrayList<>();
     int[] valid5CEs = {31,32,33,34,35,40,48,57,58,67,75,97,175,185,188};
@@ -89,15 +90,15 @@ public class Gacha
     {
         return cost_worst;
     }
-    public ArrayList<String> getSSR_Servants()
+    public HashMap getSSR_Servants()
     {
         return SSR_Servants;
     }
-    public ArrayList<String> getSR_Servants()
+    public HashMap getSR_Servants()
     {
         return SR_Servants;
     }
-    public ArrayList<String> getSSR_CEs()
+    public HashMap getSSR_CEs()
     {
         return SSR_CEs;
     }
