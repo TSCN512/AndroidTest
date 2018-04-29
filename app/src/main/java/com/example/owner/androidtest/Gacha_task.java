@@ -18,7 +18,7 @@ public class Gacha_task extends AsyncTask<Gacha, Void, Void>
         String result = "";
         String name_tidy = "";
         String theQuery = "";
-
+        myGacha = gachas[0];
         try {
             Document ServantList = Jsoup.connect("https://fate-go.cirnopedia.org/servant_all.php#nav").get();
             Document CEList = Jsoup.connect("https://fate-go.cirnopedia.org/craft_essence.php?JP=0").get();
@@ -33,85 +33,85 @@ public class Gacha_task extends AsyncTask<Gacha, Void, Void>
                 switch (i) {
                     case 0: //SSR Servants
                     {
-                        for (int j = 0; j < gachas[0].pulls[i]; j++) {
-                            gachas[0].card_id = gachas[0].valid5Servants[gachas[0].rand.nextInt(gachas[0].valid5Servants.length)];
-                            theQuery = "[href=servant_profile.php?servant=" + String.format("%03d", gachas[0].card_id) + "]";
+                        for (int j = 0; j < myGacha.pulls[i]; j++) {
+                            myGacha.card_id = myGacha.valid5Servants[myGacha.rand.nextInt(myGacha.valid5Servants.length)];
+                            theQuery = "[href=servant_profile.php?servant=" + String.format("%03d", myGacha.card_id) + "]";
                             name = ServantList.select(theQuery);
                             name_tidy = name.toString().replaceAll("<[^>]*>", "").replaceAll("/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[一-龯]+|[ａ-ｚＡ-Ｚ０-９]+[々〆〤]+/u", "");
                             name_tidy = name_tidy.replaceAll("[〕〔Ⅱ･＝々Ｘ]", "");
-                            gachas[0].SSR_Servants.add(name_tidy.trim());
+                            myGacha.SSR_Servants.add(name_tidy.trim());
                             result += name_tidy.trim() + ", ";
                         }
-                        gachas[0].pulls[i] = 0;
+                        myGacha.pulls[i] = 0;
                         break;
                     }
                     case 1: //SR Servants
                     {
-                        for (int j = 0; j < gachas[0].pulls[i]; j++) {
-                            gachas[0].card_id = gachas[0].valid4Servants[gachas[0].rand.nextInt(gachas[0].valid4Servants.length)];
-                            theQuery = "[href=servant_profile.php?servant=" + String.format("%03d", gachas[0].card_id) + "]";
+                        for (int j = 0; j < myGacha.pulls[i]; j++) {
+                            myGacha.card_id = myGacha.valid4Servants[myGacha.rand.nextInt(myGacha.valid4Servants.length)];
+                            theQuery = "[href=servant_profile.php?servant=" + String.format("%03d", myGacha.card_id) + "]";
                             name = ServantList.select(theQuery);
                             name_tidy = name.toString().replaceAll("<[^>]*>", "").replaceAll("/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[一-龯]+|[ａ-ｚＡ-Ｚ０-９]+[々〆〤]+/u", "");
                             name_tidy = name_tidy.replaceAll("[〕〔Ⅱ･＝々Ｘ]", "");
-                            gachas[0].SR_Servants.add(name_tidy.trim());
+                            myGacha.SR_Servants.add(name_tidy.trim());
                             result += name_tidy.trim() + ", ";
                         }
-                        gachas[0].pulls[i] = 0;
+                        myGacha.pulls[i] = 0;
                         break;
                     }
                     case 2: //R Servants
                     {
-                        for (int j = 0; j < gachas[0].pulls[i]; j++) {
-                            gachas[0].card_id = gachas[0].valid3Servants[gachas[0].rand.nextInt(gachas[0].valid3Servants.length)];
-                            theQuery = "[href=servant_profile.php?servant=" + String.format("%03d", gachas[0].card_id) + "]";
+                        for (int j = 0; j < myGacha.pulls[i]; j++) {
+                            myGacha.card_id = myGacha.valid3Servants[myGacha.rand.nextInt(myGacha.valid3Servants.length)];
+                            theQuery = "[href=servant_profile.php?servant=" + String.format("%03d", myGacha.card_id) + "]";
                             name = ServantList.select(theQuery);
                             name_tidy = name.toString().replaceAll("<[^>]*>", "").replaceAll("/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[一-龯]+|[ａ-ｚＡ-Ｚ０-９]+[々〆〤]+/u", "");
                             name_tidy = name_tidy.replaceAll("[〕〔Ⅱ･＝々Ｘ]", "");
                             result += name_tidy.trim() + ", ";
 
                         }
-                        gachas[0].pulls[i] = 0;
+                        myGacha.pulls[i] = 0;
                         break;
                     }
                     case 3: //SSR CE
                     {
-                        for (int j = 0; j < gachas[0].pulls[i]; j++) {
+                        for (int j = 0; j < myGacha.pulls[i]; j++) {
 
-                            gachas[0].card_id = gachas[0].valid5CEs[gachas[0].rand.nextInt(gachas[0].valid5CEs.length)];
-                            theQuery = "[href=craft_essence_profile.php?essence=" + String.format("%03d", gachas[0].card_id) + "#nav]";
+                            myGacha.card_id = myGacha.valid5CEs[myGacha.rand.nextInt(myGacha.valid5CEs.length)];
+                            theQuery = "[href=craft_essence_profile.php?essence=" + String.format("%03d", myGacha.card_id) + "#nav]";
                             name = CEList.select(theQuery);
                             name_tidy = name.toString().replaceAll("<[^>]*>", "").replaceAll("/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[一-龯]+|[ａ-ｚＡ-Ｚ０-９]+[々〆〤]+/u", "");
                             name_tidy = name_tidy.replaceAll("[〕〔Ⅱ･＝々Ｘ]", "");
-                            gachas[0].SSR_CEs.add(name_tidy.trim());
+                            myGacha.SSR_CEs.add(name_tidy.trim());
                             result += name_tidy.trim() + ", ";
                         }
-                        gachas[0].pulls[i] = 0;
+                        myGacha.pulls[i] = 0;
                         break;
                     }
                     case 4: //SR CE
                     {
-                        for (int j = 0; j < gachas[0].pulls[i]; j++) {
-                            gachas[0].card_id = gachas[0].valid4CEs[gachas[0].rand.nextInt(gachas[0].valid4CEs.length)];
-                            theQuery = "[href=craft_essence_profile.php?essence=" + String.format("%03d", gachas[0].card_id) + "#nav]";
+                        for (int j = 0; j < myGacha.pulls[i]; j++) {
+                            myGacha.card_id = myGacha.valid4CEs[myGacha.rand.nextInt(myGacha.valid4CEs.length)];
+                            theQuery = "[href=craft_essence_profile.php?essence=" + String.format("%03d", myGacha.card_id) + "#nav]";
                             name = CEList.select(theQuery);
                             name_tidy = name.toString().replaceAll("<[^>]*>", "").replaceAll("/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[一-龯]+|[ａ-ｚＡ-Ｚ０-９]+[々〆〤]+/u", "");
                             name_tidy = name_tidy.replaceAll("[〕〔Ⅱ･＝々Ｘ]", "");
                             result += name_tidy.trim() + ", ";
                         }
-                        gachas[0].pulls[i] = 0;
+                        myGacha.pulls[i] = 0;
                         break;
                     }
                     case 5: //R CE
                     {
-                        for (int j = 0; j < gachas[0].pulls[i]; j++) {
-                            gachas[0].card_id = gachas[0].valid3CEs[gachas[0].rand.nextInt(gachas[0].valid3CEs.length)];
-                            theQuery = "[href=craft_essence_profile.php?essence=" + String.format("%03d", gachas[0].card_id) + "#nav]";
+                        for (int j = 0; j < myGacha.pulls[i]; j++) {
+                            myGacha.card_id = myGacha.valid3CEs[myGacha.rand.nextInt(myGacha.valid3CEs.length)];
+                            theQuery = "[href=craft_essence_profile.php?essence=" + String.format("%03d", myGacha.card_id) + "#nav]";
                             name = CEList.select(theQuery);
                             name_tidy = name.toString().replaceAll("<[^>]*>", "").replaceAll("/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[一-龯]+|[ａ-ｚＡ-Ｚ０-９]+[々〆〤]+/u", "");
                             name_tidy = name_tidy.replaceAll("[〕〔Ⅱ･＝々Ｘ]", "");
                             result += name_tidy.trim() + ", ";
                         }
-                        gachas[0].pulls[i] = 0;
+                        myGacha.pulls[i] = 0;
                         break;
                     }
                 }
@@ -121,8 +121,8 @@ public class Gacha_task extends AsyncTask<Gacha, Void, Void>
         {
             Log.d("GACHA_CARDS", "The IOException: " + e.getMessage());
         }
-        gachas[0].setLast_result(result);
-        myGacha = gachas[0];
+        myGacha.setLast_result(result);
+
         return null;
     }
     @Override
