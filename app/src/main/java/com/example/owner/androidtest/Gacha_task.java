@@ -135,14 +135,24 @@ public class Gacha_task extends AsyncTask<Gacha, Void, Void>
     public void onPostExecute(Void result)
     {
         myGacha.TV3.setText(myGacha.getLastResult());
-        String list = "";
-        list = myGacha.getSSR_Servants().toString().replaceAll("[{}]","").replaceAll(",","\n").replaceAll("="," x");
-        myGacha.TV1.setText(list);
+        String list;
+        if(myGacha.getSSR_Servants().isEmpty() && myGacha.getSR_Servants().isEmpty())
+            list = "";
+        else
+            list = "5★ & 4★ Servants\n";
+        list =  list + myGacha.getSSR_Servants().toString().replaceAll("[{}]","").replaceAll(",","\n").replaceAll("="," x");
+        myGacha.TV1.setText(list + '\n');
         list = myGacha.getSR_Servants().toString().replaceAll("[{}]","").replaceAll(",","\n").replaceAll("="," x");
-        myGacha.TV1.setText(list);
-        list = myGacha.getSSR_CEs().toString().replaceAll("[{}]","").replaceAll(",","\n").replaceAll("="," x");
-        myGacha.TV2.setText(list);
-
+        myGacha.TV1.append(list);
+        if(myGacha.getSSR_CEs().isEmpty())
+            list = "";
+        else
+            list = "5★ Craft Essences\n";
+        list =  list + myGacha.getSSR_CEs().toString().replaceAll("[{}]","").replaceAll(",","\n").replaceAll("="," x");
+        myGacha.TV2.setText(list + '\n');
+        myGacha.bar.setMax(100);
+        myGacha.TV4.setText( "Quartz spent: "+ myGacha.getQuartz() );
+        myGacha.TV5.setText( "Money spent: $" + String.format("%2.2f",myGacha.getCost_best()) );
         myGacha.theButton.setEnabled (true);
     }
 }
