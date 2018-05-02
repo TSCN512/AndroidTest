@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         final Button feature2 = (Button) findViewById(R.id.feature2);
         final Button feature3 = (Button) findViewById(R.id.feature3);
         final TextView inProgress = (TextView) findViewById(R.id.inProgress);
+        //ImageView imageView = (ImageView) findViewById(R.id.imageView3);
+        //imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         /*Display display = getWindowManager().getDefaultDisplay();
         Point myPoint = new Point();
         display.getSize(myPoint);

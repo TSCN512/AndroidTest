@@ -9,14 +9,16 @@
 
 
     <ImageView
-            android:layout_width="602dp"
-            android:layout_height="373dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:contentDescription="@string/featScreen"
-            android:background="@drawable/splash1"
-            android:scaleType="fitXY"
+            android:src="@drawable/splash1"
+
             android:id="@+id/imageView3"
-            tools:layout_constraintTop_creator="1" tools:layout_constraintLeft_creator="1"
-            app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+            tools:layout_constraintTop_creator="1"
+            tools:layout_constraintLeft_creator="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

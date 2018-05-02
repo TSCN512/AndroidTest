@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidTest</string>
+    <string name="app_name">Chaldea Solution</string>
     <string name="title_activity_servant_stats">ServantStats</string>
     <string name="idHelp">Enter Servant ID Here</string>
     <string name="submit">Submit</string>

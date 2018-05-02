@@ -42,7 +42,7 @@ public class Gacha_task extends AsyncTask<Gacha, Void, Void>
                             name = ServantList.select(theQuery);
                             name_tidy = name.toString().replaceAll("<a href.+<br>","").replaceAll("</a>","").replaceAll("amp;","");
                             if(myGacha.SSR_Servants.containsKey(name_tidy.trim()))
-                                myGacha.SSR_Servants.put(name_tidy.trim(), (int)myGacha.SSR_Servants.get(name_tidy.trim()+1));
+                                myGacha.SSR_Servants.put(name_tidy.trim(), (int)myGacha.SSR_Servants.get(name_tidy.trim())+1);
                             else
                                 myGacha.SSR_Servants.put(name_tidy.trim(), 1);
                             result += name_tidy.trim() + ", ";
@@ -58,7 +58,7 @@ public class Gacha_task extends AsyncTask<Gacha, Void, Void>
                             name = ServantList.select(theQuery);
                             name_tidy = name.toString().replaceAll("<a href.+<br>","").replaceAll("</a>","").replaceAll("amp;","");
                             if(myGacha.SR_Servants.containsKey(name_tidy.trim()))
-                                myGacha.SR_Servants.put(name_tidy.trim(), (int)myGacha.SR_Servants.get(name_tidy.trim()+1));
+                                myGacha.SR_Servants.put(name_tidy.trim(), (int)myGacha.SR_Servants.get(name_tidy.trim())+1);
                             else
                                 myGacha.SR_Servants.put(name_tidy.trim(), 1);
                             result += name_tidy.trim() + ", ";
@@ -88,7 +88,7 @@ public class Gacha_task extends AsyncTask<Gacha, Void, Void>
                             name = CEList.select(theQuery);
                             name_tidy = name.toString().replaceAll("><font.+<br","").replaceAll("</a>","").replaceAll("<a class=.+>","").replaceAll("amp;","");
                             if(myGacha.SSR_CEs.containsKey(name_tidy.trim()))
-                                myGacha.SSR_CEs.put(name_tidy.trim(), (int)myGacha.SSR_CEs.get(name_tidy.trim()+1));
+                                myGacha.SSR_CEs.put(name_tidy.trim(), (int)myGacha.SSR_CEs.get(name_tidy.trim())+1);
                             else
                                 myGacha.SSR_CEs.put(name_tidy.trim(), 1);
                             result += name_tidy.trim() + ", ";
@@ -136,17 +136,18 @@ public class Gacha_task extends AsyncTask<Gacha, Void, Void>
     {
         myGacha.TV3.setText(myGacha.getLastResult());
         String list;
-        if(myGacha.getSSR_Servants().isEmpty() && myGacha.getSR_Servants().isEmpty())
-            list = "";
-        else
+        //if(myGacha.getSSR_Servants().isEmpty() && myGacha.getSR_Servants().isEmpty())
+          //  list = "";
+        //else
             list = "5★ & 4★ Servants\n";
+
         list =  list + myGacha.getSSR_Servants().toString().replaceAll("[{}]","").replaceAll(",","\n").replaceAll("="," x");
-        myGacha.TV1.setText(list + '\n');
-        list = myGacha.getSR_Servants().toString().replaceAll("[{}]","").replaceAll(",","\n").replaceAll("="," x");
-        myGacha.TV1.append(list);
-        if(myGacha.getSSR_CEs().isEmpty())
-            list = "";
-        else
+        //myGacha.TV1.setText(list + '\n');
+        list = list + myGacha.getSR_Servants().toString().replaceAll("[{}]","").replaceAll(",","\n").replaceAll("="," x");
+        myGacha.TV1.setText(list);
+        //if(myGacha.getSSR_CEs().isEmpty())
+        //    list = "";
+        //else
             list = "5★ Craft Essences\n";
         list =  list + myGacha.getSSR_CEs().toString().replaceAll("[{}]","").replaceAll(",","\n").replaceAll("="," x");
         myGacha.TV2.setText(list + '\n');

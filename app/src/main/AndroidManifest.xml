@@ -21,7 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
         <activity
                 android:name=".ServantStats"
                 android:label="@string/title_activity_servant_stats"
@@ -34,6 +33,8 @@
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="com.example.owner.androidtest.MainActivity"/>
+        </activity>
+        <activity android:name=".dmg_calculator">
         </activity>
     </application>
 
