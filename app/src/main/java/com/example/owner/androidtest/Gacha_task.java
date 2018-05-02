@@ -12,20 +12,32 @@ import java.io.IOException;
 public class Gacha_task extends AsyncTask<Gacha, Void, Void>
 {
     Gacha myGacha;
+    int counter;
 
+    @Override
+    protected void onProgressUpdate(Void... values)
+    {
+
+        myGacha.bar.incrementProgressBy(counter);
+        counter+=10;
+    }
 
     @Override
     public Void doInBackground(Gacha ... gachas)
     {
+
+        counter = 0;
         Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
         String result = "";
         String name_tidy = "";
         String theQuery = "";
         myGacha = gachas[0];
+        myGacha.bar.setProgress(0);
         try {
             Document ServantList = Jsoup.connect("https://fate-go.cirnopedia.org/servant_all.php#nav").get();
             Document CEList = Jsoup.connect("https://fate-go.cirnopedia.org/craft_essence.php?JP=0").get();
             Elements name;
+            publishProgress();
             //Elements Servant = ServantList.select("theQuery");
             //Elements CE = CEList.select(theQuery);
             //String output = CE.toString().replaceAll("<[^>]*>", "").replaceAll("/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[一-龯]+|[ａ-ｚＡ-Ｚ０-９]+[々〆〤]+/u","");
@@ -33,6 +45,7 @@ public class Gacha_task extends AsyncTask<Gacha, Void, Void>
 
             for (int i = 0; i < 6; i++) //determine what was pulled from rarities
             {
+                publishProgress();
                 switch (i) {
                     case 0: //SSR Servants
                     {
@@ -143,7 +156,9 @@ public class Gacha_task extends AsyncTask<Gacha, Void, Void>
 
         list =  list + myGacha.getSSR_Servants().toString().replaceAll("[{}]","").replaceAll(",","\n").replaceAll("="," x");
         //myGacha.TV1.setText(list + '\n');
-        list = list + '\n' + myGacha.getSR_Servants().toString().replaceAll("[{}]","").replaceAll(",","\n").replaceAll("="," x");
+        if(!myGacha.getSSR_Servants().isEmpty())
+            list += '\n';
+        list += myGacha.getSR_Servants().toString().replaceAll("[{}]","").replaceAll(",","\n").replaceAll("="," x");
         myGacha.TV1.setText(list);
         //if(myGacha.getSSR_CEs().isEmpty())
         //    list = "";
