@@ -56,7 +56,7 @@ public class Gacha
     {
 
         quartz += 30;
-        cost_best += quartz * .57;
+        cost_best = quartz * .57;
         cost_worst = quartz;
         for (int i = 0; i < 10; i++) {
             int pull = rand.nextInt(100);
