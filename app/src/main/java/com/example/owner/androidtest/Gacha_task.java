@@ -143,7 +143,7 @@ public class Gacha_task extends AsyncTask<Gacha, Void, Void>
 
         list =  list + myGacha.getSSR_Servants().toString().replaceAll("[{}]","").replaceAll(",","\n").replaceAll("="," x");
         //myGacha.TV1.setText(list + '\n');
-        list = list + myGacha.getSR_Servants().toString().replaceAll("[{}]","").replaceAll(",","\n").replaceAll("="," x");
+        list = list + '\n' + myGacha.getSR_Servants().toString().replaceAll("[{}]","").replaceAll(",","\n").replaceAll("="," x");
         myGacha.TV1.setText(list);
         //if(myGacha.getSSR_CEs().isEmpty())
         //    list = "";
