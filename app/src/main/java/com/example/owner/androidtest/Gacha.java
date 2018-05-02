@@ -41,6 +41,8 @@ public class Gacha
     TextView TV1;
     TextView TV2;
     TextView TV3;
+    TextView TV4;
+    TextView TV5;
     Button theButton;
     public Gacha(ProgressBar progress, TextView tv1, TextView tv2, TextView tv3, Button myButton, TextView tv4, TextView tv5)
     {
@@ -104,4 +106,6 @@ public class Gacha
     {
         return SSR_CEs;
     }
+
+    public int getQuartz() { return quartz; }
 }
