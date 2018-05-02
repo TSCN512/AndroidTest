@@ -23,7 +23,10 @@ public class Summoning extends Activity {
         final TextView TV3 = (TextView) findViewById(R.id.summoning_tv3);
         final ProgressBar progress = (ProgressBar)findViewById(R.id.progressBar);
         //final ImageView IV = (ImageView) findViewById(R.id.imageView);
-        final Gacha myGacha = new Gacha(progress, TV1, TV2, TV3, summon10);
+        final TextView TV4 = (TextView) findViewById(R.id.quartzCount);
+        final TextView TV5 = (TextView) findViewById(R.id.quartzCount2);
+        final Gacha myGacha = new Gacha(progress, TV1, TV2, TV3, summon10, TV4, TV5);
+
 
         summon10.setOnClickListener(new View.OnClickListener()
         {

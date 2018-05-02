@@ -42,12 +42,14 @@ public class Gacha
     TextView TV2;
     TextView TV3;
     Button theButton;
-    public Gacha(ProgressBar progress, TextView tv1, TextView tv2, TextView tv3, Button myButton)
+    public Gacha(ProgressBar progress, TextView tv1, TextView tv2, TextView tv3, Button myButton, TextView tv4, TextView tv5)
     {
         bar = progress;
         TV1 = tv1;
         TV2 = tv2;
         TV3 = tv3;
+        TV4 = tv4;
+        TV5 = tv5;
         theButton = myButton;
     }
 
