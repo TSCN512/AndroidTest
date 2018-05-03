@@ -59,9 +59,9 @@ public class MainActivity extends AppCompatActivity {
         feature3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(MainActivity.this, Summoning.class); //before was MainActivity.this, ServantStats.class
-                //startActivity(intent);
-                inProgress.setText("Coming Soon");
+                Intent intent = new Intent(MainActivity.this, dmg_calculator.class); //before was MainActivity.this, ServantStats.class
+                startActivity(intent);
+                //inProgress.setText("Coming Soon");
             }
         });
     }

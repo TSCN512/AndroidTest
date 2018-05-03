@@ -113,9 +113,9 @@ public class servant_small
                 Elements atb = doc.select(".status > tbody:nth-child(2) > tr:nth-child(7) > td:nth-child(2)");
                 Elements sClass = doc.select(myQuery + myQueryClass);
                 Elements cost = doc.select(myQuery + myQueryCost);
-                setServantClass(sClass.toString().replaceAll("<[^>]*>","").trim());
-                setAttribute(atb.toString().replaceAll("<[^>]*>","").trim()); //Star, Man, etc.
-                setATK(Integer.parseInt(atk.toString().replaceAll("<[^>]*>", "").trim()));
+                setServantClass(sClass.toString().replaceAll("<[^>]*>","").replaceAll(",","").trim());
+                setAttribute(atb.toString().replaceAll("<[^>]*>","").replaceAll(",","").trim()); //Star, Man, etc.
+                setATK(Integer.parseInt(atk.toString().replaceAll("<[^>]*>", "").replaceAll(",","").trim()));
                 setCost(cost.toString().replaceAll("<[^>]*>","").trim());
 
 
@@ -168,7 +168,60 @@ public class servant_small
     public void setCost(String cost) {
         this.cost = Integer.parseInt(cost);
     }
-
+    public String classIcon()
+    {
+        String location = "";
+        if (getServantClass().equalsIgnoreCase("Saber"))
+            location += "saber";
+        else if (getServantClass().equalsIgnoreCase( "Archer"))
+            location += "archer";
+        else if (getServantClass().equalsIgnoreCase("Lancer"))
+            location += "lancer";
+        else if (getServantClass().equalsIgnoreCase( "Caster"))
+            location += "caster";
+        else if (getServantClass().equalsIgnoreCase("Rider"))
+            location += "rider";
+        else if (getServantClass().equalsIgnoreCase("Assassin"))
+            location += "assassin";
+        else if (getServantClass().equalsIgnoreCase( "Berserker"))
+            location += "berserker";
+        else if (getServantClass().equalsIgnoreCase( "Ruler"))
+            location += "ruler";
+        else if (getServantClass().equalsIgnoreCase( "Avenger"))
+            location += "berserker";
+        if(!getServantClass().equalsIgnoreCase("Shielder"))
+        {
+            switch (getRarity()) {
+                case 0: {
+                    location += "0";
+                    break;
+                }
+                case 1: {
+                    location += "1";
+                    break;
+                }
+                case 2: {
+                    location += "1";
+                    break;
+                }
+                case 3: {
+                    location += "3";
+                    break;
+                }
+                case 4: {
+                    location += "5";
+                    break;
+                }
+                case 5: {
+                    location += "5";
+                    break;
+                }
+            }
+        }
+        else
+            location = "shield";
+        return location;
+    }
     public int getRarity() {
         switch (cost)
         {

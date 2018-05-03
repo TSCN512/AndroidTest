@@ -39,21 +39,28 @@ public class ServantStats extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-
-                int ID = Integer.parseInt(ET.getText().toString());
-                if(ID < 1)
+                if(ET.getText().toString()=="")
                 {
-                    TV.setText("Try Again, Servant IDs start at 1.");
-                    IV.setImageResource(android.R.color.transparent);
+                    TV.setText("You have to enter a number.");
                 }
                 else
                 {
-                    Servant newServant = new Servant(ID);
-                    TV.setText(newServant.toString());
-                    traits.setText("Traits: \n" + newServant.getTraits());
-                    Portrait pic = new Portrait();
-                    pic.setImage(IV);
-                    pic.execute(newServant.getImageURL());
+                    int ID = Integer.parseInt(ET.getText().toString());
+
+                    if (ID < 1)
+                    {
+                        TV.setText("Try Again, Servant IDs start at 1.");
+                        IV.setImageResource(android.R.color.transparent);
+                    }
+                    else
+                    {
+                        Servant newServant = new Servant(ID);
+                        TV.setText(newServant.toString());
+                        traits.setText("Traits: \n" + newServant.getTraits());
+                        Portrait pic = new Portrait();
+                        pic.setImage(IV);
+                        pic.execute(newServant.getImageURL());
+                    }
                 }
             }
         });
