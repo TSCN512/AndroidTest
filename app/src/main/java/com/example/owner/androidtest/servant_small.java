@@ -142,6 +142,10 @@ public class servant_small
         return ATK;
     }
 
+    public boolean isSpecial() {
+        return special;
+    }
+
     public String getAttribute() {
         if(special)
             return "INVALID";
@@ -233,7 +237,6 @@ public class servant_small
                     return 0;
                 else
                     return 2;
-
             }
             case 7: {
                 return 3;
