@@ -64,6 +64,7 @@
             app:layout_constraintBottom_toTopOf="@+id/class_icon"
             app:layout_constraintLeft_toRightOf="parent"
             app:layout_constraintRight_toLeftOf="parent"/>
+
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -74,6 +75,15 @@
             app:layout_constraintLeft_toRightOf="@+id/calcStart"
             app:layout_constraintRight_toLeftOf="@+id/servantPic"
             />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/servantAtk2"
+            app:layout_constraintTop_toBottomOf="@id/servantAttribute"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toRightOf="@+id/calcStart"
+            app:layout_constraintRight_toLeftOf="@+id/servantPic"/>
     <Button
             android:text="Search"
             android:layout_width="wrap_content"

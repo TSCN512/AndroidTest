@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.*;
 
+import java.util.Random;
 import java.util.Stack;
 
 public class dmg_calculator extends AppCompatActivity{
@@ -16,6 +17,7 @@ public class dmg_calculator extends AppCompatActivity{
     String monsterC = "";
     String monsterA = "";
     Stack cards = new Stack();
+    Random rand = new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class dmg_calculator extends AppCompatActivity{
         final Button tester = (Button) findViewById(R.id.calcStart);
         final TextView servantClass = (TextView) findViewById(R.id.servantClass);
         final ImageView servantPic = (ImageView) findViewById(R.id.servantPic);
+        final TextView servantAtk = (TextView) findViewById(R.id.servantAtk2);
         final ImageView classPic = (ImageView) findViewById(R.id.class_icon);
         final EditText IDtaker = (EditText) findViewById(R.id.idTaker);
         final Spinner monsters = (Spinner)findViewById(R.id.monsterSpinner);
@@ -43,6 +46,7 @@ public class dmg_calculator extends AppCompatActivity{
         final ImageView arts = (ImageView) findViewById(R.id.artsButton);
         final ImageView quick = (ImageView) findViewById(R.id.quickButton);
         final Button undo = (Button) findViewById(R.id.undoButton);
+        final TextView cardLog = (TextView) findViewById(R.id.cardLog);
         ArrayAdapter<String>adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,options);
         IDtaker.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_NUMBER); //block special characters
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -402,6 +406,7 @@ public class dmg_calculator extends AppCompatActivity{
                                 servantAttribute.setText("Attribute:\n" +newServant.getAttribute());
                                 mclassPic.setImageResource(monsterCPic());
                                 monsterAtt.setText("Attribute: \n" + getMonsterA());
+                                servantAtk.setText("Attack: \n" + newServant.getATK());
                                 buster.setVisibility(buster.VISIBLE);
                                 arts.setVisibility(arts.VISIBLE);
                                 quick.setVisibility(quick.VISIBLE);
@@ -411,6 +416,7 @@ public class dmg_calculator extends AppCompatActivity{
                                     public void onClick(View v) {
                                         if(cards.size() < 3)
                                             cards.push(1);
+                                        updateCardLog(cardLog);
                                     }
                                 });
                                 arts.setOnClickListener(new View.OnClickListener() {
@@ -418,6 +424,7 @@ public class dmg_calculator extends AppCompatActivity{
                                     public void onClick(View v) {
                                         if(cards.size() < 3)
                                             cards.push(2);
+                                        updateCardLog(cardLog);
                                     }
                                 });
                                 quick.setOnClickListener(new View.OnClickListener() {
@@ -425,6 +432,15 @@ public class dmg_calculator extends AppCompatActivity{
                                     public void onClick(View v) {
                                         if(cards.size() < 3)
                                             cards.push(3);
+                                        updateCardLog(cardLog);
+                                    }
+                                });
+                                undo.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        if(!cards.isEmpty())
+                                            cards.pop();
+                                        updateCardLog(cardLog);
                                     }
                                 });
                                 //int drawableLocation = getResources().getIdentifier("drawable/" + newServant.classIcon(), null, null);
@@ -487,5 +503,154 @@ public class dmg_calculator extends AppCompatActivity{
 
     public String getMonsterUrl() {
         return "https://fate-go.cirnopedia.org/" + monsterUrl;
+    }
+    public void updateCardLog(TextView tv){
+        String result = "";
+        int[] holder = new int[3];
+        int i = 0;
+        int total = cards.size();
+        if(!cards.isEmpty())
+        {
+            while(!cards.isEmpty())
+            {
+                holder[i] =(int) cards.pop();
+                i++;
+            }
+            i=1;
+            for(int k = total-1; k>-1; k--)
+            {
+                result += "Card "+ (i) +": ";
+                if(holder[k]==1)
+                    result+="Buster\n";
+                if(holder[k]==2)
+                    result+="Arts\n";
+                if(holder[k]==3)
+                    result+="Quick\n";
+                //Log.e("MUYMUY","Here " +k);
+                cards.push(holder[k]);
+                i++;
+            }
+        }
+        tv.setText(result);
+    }
+    public double[] cardDmg(int ATK, double classModifier, double classBonus, double attributemod, boolean crit)
+    {
+        int[] holder = {0,0,0};
+        int i = 0;
+        int total = cards.size();
+        int servantAtk = ATK;
+        double firstCardBonus;
+        double triangleModifier = classModifier;
+        double classAtkBonus = classBonus;
+        double cardDamageValue1 = 0;
+        double cardDamageValue2 = 0;
+        double cardDamageValue3 = 0;
+        double attributeModifier = attributemod;
+        double extraCardModifier;
+        double randomModifier = .9;
+        int criticalModifier;
+        double busterChainMod;
+        double cardDmg1;
+        double cardDmg2;
+        double cardDmg3;
+        double extraDmg;
+        if(!cards.isEmpty()) {
+            while (!cards.isEmpty()) {
+                holder[i] = (int) cards.pop();
+                i++;
+            }
+            i = 1;
+            for (int k = total - 1; k > -1; k--) {
+                //Log.e("MUYMUY","Here " +k);
+                cards.push(holder[k]);
+                i++;
+            }
+            if (holder[0] == 1)
+                firstCardBonus = .5;
+            else
+                firstCardBonus = 0;
+
+            if (holder[0] == 1)
+                cardDamageValue1 = 1.5;
+            else if (holder[1] == 1)
+                cardDamageValue2 = 1.8;
+            else if (holder[2] == 1)
+                cardDamageValue3 = 2.1;
+            if (holder[0] == 2)
+                cardDamageValue1 = 1.0;
+            else if (holder[1] == 2)
+                cardDamageValue2 = 1.2;
+            else if (holder[2] == 2)
+                cardDamageValue3 = 1.4;
+            if (holder[0] == 3)
+                cardDamageValue1 = 0.8;
+            else if (holder[1] == 3)
+                cardDamageValue2 = 0.96;
+            else if (holder[2] == 3)
+                cardDamageValue3 = 1.12;
+            if (crit)
+                criticalModifier = 2;
+            else
+                criticalModifier = 1;
+            if (holder[0] == 1 && holder[1] == 1 && holder[2] == 1)
+                busterChainMod = .2;
+            else
+                busterChainMod = 0;
+
+            randomModifier += rand.nextInt(3) * .1;
+
+            cardDmg1 = servantAtk * (firstCardBonus + cardDamageValue1) * classAtkBonus * triangleModifier * attributeModifier * randomModifier * 0.23 * criticalModifier + (servantAtk * busterChainMod);
+            cardDmg2 = servantAtk * (firstCardBonus + cardDamageValue2) * classAtkBonus * triangleModifier * attributeModifier * randomModifier * 0.23 * criticalModifier + (servantAtk * busterChainMod);
+            cardDmg3 = servantAtk * (firstCardBonus + cardDamageValue3) * classAtkBonus * triangleModifier * attributeModifier * randomModifier * 0.23 * criticalModifier + (servantAtk * busterChainMod);
+            if (total == 3) {
+                if (holder[1] == holder[2] && holder[1] == holder[3])
+                    extraCardModifier = 3.5;
+                else
+                    extraCardModifier = 2;
+                extraDmg = servantAtk * (firstCardBonus + 1) * classAtkBonus * triangleModifier * attributeModifier * randomModifier * 0.23 * criticalModifier * extraCardModifier + (servantAtk * busterChainMod);
+                double[] result = {cardDmg1, cardDmg2, cardDmg3, extraDmg};
+                return result;
+            } else {
+                double[] result = {cardDmg1, cardDmg2, cardDmg3};
+                return result;
+            }//servantAtk  * (firstCardBonus + cardDamageValue) * classAtkBonus * triangleModifier * attributeModifier * randomModifier * 0.23 * (1) * criticalModifier * extraCardModifier * (1) +  (servantAtk * busterChainMod);
+
+            //if(total == 3)
+            //EXTRA CARD
+
+
+            //dmgPlusAdd {X Damage Plus/Minus} // Note the lack of %. Divinity and Waver's 3rd skill, for example.
+            //selfDmgCutAdd  = {X Damage Up/Cut} // Also a straight number. Waver's 2nd skill and Mashu's first, for example.
+            //ardMod = {X% [Card] Power Up/Down}
+            //atkMod = {X% Attack Up/Down}
+            //defMod = {X% Defense Up/Down), Def Up (but not Def Down) is skipped if the NP ignores defense}]
+            //specialDefMod = Given to some enemies like Quetz's in Babylon or Gawain in Camelot
+            //powerMod = {X% Power Up/Down}
+        }
+        else
+            return null;
+    }
+    public double getClassModifier(String c)
+    {
+        if (c.equalsIgnoreCase("Saber"))
+            return 1.0;
+        else if (c.equalsIgnoreCase( "Archer"))
+            return .95;
+        else if (c.equalsIgnoreCase("Lancer"))
+            return 1.05;
+        else if (c.equalsIgnoreCase( "Caster"))
+            return 0.9;
+        else if (c.equalsIgnoreCase("Rider"))
+            return 1.0;
+        else if (c.equalsIgnoreCase("Assassin"))
+            return 0.9;
+        else if (c.equalsIgnoreCase( "Berserker"))
+            return 1.1;
+        else if (c.equalsIgnoreCase( "Ruler"))
+            return 1.1;
+        else if (c.equalsIgnoreCase( "Avenger"))
+            return 1.1;
+        else
+            return 1.0;
     }
 }
