@@ -32,7 +32,9 @@
                 android:label="@string/title_activity_summoning">
 
         </activity>
-        <activity android:name=".dmg_calculator">
+        <activity
+                android:name=".dmg_calculator"
+                android:label="@string/dmgCalc">
         </activity>
     </application>
 

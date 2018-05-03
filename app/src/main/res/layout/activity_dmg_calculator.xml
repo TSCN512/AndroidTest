@@ -8,22 +8,13 @@
         tools:context="com.example.owner.androidtest.dmg_calculator" tools:layout_editor_absoluteY="25dp"
         tools:layout_editor_absoluteX="0dp">
 
-    <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar3"
-            android:layout_width="576dp"
-            android:layout_height="48dp"
-            app:title="Damage Calculation"
-            app:titleTextColor="@color/white"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:layout_constraintTop_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="parent"/>
+
     <ImageView
             android:layout_width="120dp"
             android:layout_height="180dp"
             android:id = "@+id/servantPic"
             app:layout_constraintRight_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar3"
+            app:layout_constraintTop_toBottomOf="parent"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"/>
@@ -69,7 +60,9 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:id = "@+id/servantClass"
-            app:layout_constraintBottom_toTopOf="@+id/class_icon" tools:layout_editor_absoluteX="0dp"/>
+            app:layout_constraintBottom_toTopOf="@+id/class_icon"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintRight_toLeftOf="parent"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -104,7 +97,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar3"
+            app:layout_constraintTop_toBottomOf="parent"
             app:layout_constraintBottom_toTopOf="@id/idTaker"
             android:id="@+id/monsterSpinner"/>
 
