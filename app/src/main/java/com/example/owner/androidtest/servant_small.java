@@ -14,11 +14,16 @@ public class servant_small
     String imageURL;
     int ATK;
     int id;
+    int cost;
     String servantClass;
 
     public servant_small(int ID)
     {
         id = ID;
+        String myQuery;
+        String myQueryClass;
+        String myQueryATK;
+        String myQueryCost;
         try {
             //we will concatenate the servant id part of the wiki after reading user input
             int x = ID; //servant id
@@ -31,51 +36,56 @@ public class servant_small
                 String webpage = "https://fate-go.cirnopedia.org/";
                 String webpage_servant = webpage + "servant_profile.php?servant=" + x;
                 setImageURL(webpage + "icons/servant_card/" + String.format("%03d", x) + "1.jpg");
-                String myQuery;
-                String myQueryClass;
-                String myQueryATK;
+
                 switch (x)  //this switch statement accommodates the different webpage layouts
                 {
                     case 1: {
                         myQuery = "#content > a:nth-child(14) > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(2) ";
                         myQueryATK= "> tr:nth-child(8) > td:nth-child(2)";
                         myQueryClass = "> tr:nth-child(2) > td:nth-child(4)";
+                        myQueryCost = "> tr:nth-child(5) > td:nth-child(2)";
                         break;
                     }
                     case 5: {
                         myQuery = "#content > a:nth-child(14) > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(2) ";
                         myQueryATK= "> tr:nth-child(8) > td:nth-child(2)";
                         myQueryClass = "> tr:nth-child(2) > td:nth-child(4)";
+                        myQueryCost = "> tr:nth-child(5) > td:nth-child(2)";
                         break;
                     }
                     case 94: {
                         myQuery = "#content > a:nth-child(14) > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(2) ";
                         myQueryATK= "> tr:nth-child(8) > td:nth-child(2)";
                         myQueryClass = "> tr:nth-child(2) > td:nth-child(4)";
+                        myQueryCost = "> tr:nth-child(5) > td:nth-child(2)";
                         break;
                     }
                     case 99: {
                         myQuery = "#content > a:nth-child(14) > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(2) ";
                         myQueryATK= "> tr:nth-child(8) > td:nth-child(2)";
                         myQueryClass = "> tr:nth-child(2) > td:nth-child(4)";
+                        myQueryCost = "> tr:nth-child(5) > td:nth-child(2)";
                         break;
                     }
                     case 106: {
                         myQuery = "#content > a:nth-child(14) > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(2) ";
                         myQueryATK= "> tr:nth-child(8) > td:nth-child(2)";
                         myQueryClass = "> tr:nth-child(2) > td:nth-child(4)";
+                        myQueryCost = "> tr:nth-child(5) > td:nth-child(2)";
                         break;
                     }
                     case 160: {
                         myQuery = "#content > a:nth-child(14) > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(2) ";
                         myQueryATK= "> tr:nth-child(8) > td:nth-child(2)";
                         myQueryClass = "> tr:nth-child(2) > td:nth-child(4)";
+                        myQueryCost = "> tr:nth-child(5) > td:nth-child(2)";
                         break;
                     }
                     case 183: {
                         myQuery = "#content > a:nth-child(14) > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(2) ";
                         myQueryATK= "> tr:nth-child(8) > td:nth-child(2)";
                         myQueryClass = "> tr:nth-child(2) > td:nth-child(4)";
+                        myQueryCost = "> tr:nth-child(5) > td:nth-child(2)";
                         break;
                     }
                     default:
@@ -84,11 +94,13 @@ public class servant_small
                             myQuery = "#content > a:nth-child(13) > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(2) ";
                             myQueryATK = "> tr:nth-child(8) > td:nth-child(4)";
                             myQueryClass = "> tr:nth-child(2) > td:nth-child(4)";
+                            myQueryCost = "> tr:nth-child(5) > td:nth-child(2)";
                         }
                         else {
                             myQuery = "#content > a:nth-child(12) > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(2) ";
                             myQueryATK = "> tr:nth-child(8) > td:nth-child(2)";
                             myQueryClass = "> tr:nth-child(2) > td:nth-child(4)";
+                            myQueryCost = "> tr:nth-child(5) > td:nth-child(2)";
                         }
                         break;
                     }
@@ -100,9 +112,12 @@ public class servant_small
                 Elements atk = doc.select(myQuery + myQueryATK);
                 Elements atb = doc.select(".status > tbody:nth-child(2) > tr:nth-child(7) > td:nth-child(2)");
                 Elements sClass = doc.select(myQuery + myQueryClass);
+                Elements cost = doc.select(myQuery + myQueryCost);
                 setServantClass(sClass.toString().replaceAll("<[^>]*>","").trim());
                 setAttribute(atb.toString().replaceAll("<[^>]*>","").trim()); //Star, Man, etc.
                 setATK(Integer.parseInt(atk.toString().replaceAll("<[^>]*>", "").trim()));
+                setCost(cost.toString().replaceAll("<[^>]*>","").trim());
+
 
             }
 
@@ -148,5 +163,41 @@ public class servant_small
 
     public String getImageURL() {
         return imageURL;
+    }
+
+    public void setCost(String cost) {
+        this.cost = Integer.parseInt(cost);
+    }
+
+    public int getRarity() {
+        switch (cost)
+        {
+            case 3: {
+                return 1;
+            }
+            case 4: {
+                if(getServantClass()=="Avenger")
+                    return 0;
+                else
+                    return 2;
+
+            }
+            case 7: {
+                return 3;
+
+            }
+            case 12: {
+                return 4;
+
+            }
+            case 16: {
+                return 5;
+
+            }
+            default: {
+                return 1000;
+
+            }
+        }
     }
 }

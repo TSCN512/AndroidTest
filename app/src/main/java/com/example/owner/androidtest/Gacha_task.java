@@ -152,18 +152,18 @@ public class Gacha_task extends AsyncTask<Gacha, Void, Void>
         //if(myGacha.getSSR_Servants().isEmpty() && myGacha.getSR_Servants().isEmpty())
           //  list = "";
         //else
-            list = "5★ & 4★ Servants\n";
+            list = "5★ & 4★ Servants\n ";
 
         list =  list + myGacha.getSSR_Servants().toString().replaceAll("[{}]","").replaceAll(",","\n").replaceAll("="," x");
         //myGacha.TV1.setText(list + '\n');
         if(!myGacha.getSSR_Servants().isEmpty())
-            list += '\n';
+            list += "\n ";
         list += myGacha.getSR_Servants().toString().replaceAll("[{}]","").replaceAll(",","\n").replaceAll("="," x");
         myGacha.TV1.setText(list);
         //if(myGacha.getSSR_CEs().isEmpty())
         //    list = "";
         //else
-            list = "5★ Craft Essences\n";
+            list = "5★ Craft Essences\n ";
         list =  list + myGacha.getSSR_CEs().toString().replaceAll("[{}]","").replaceAll(",","\n").replaceAll("="," x");
         myGacha.TV2.setText(list + '\n');
         myGacha.bar.setMax(100);
