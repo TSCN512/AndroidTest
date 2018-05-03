@@ -9,9 +9,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.*;
 
+import java.util.Stack;
+
 public class dmg_calculator extends AppCompatActivity{
     String monsterUrl = "";
     String monsterC = "";
+    String monsterA = "";
+    Stack cards = new Stack();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,9 +36,13 @@ public class dmg_calculator extends AppCompatActivity{
         final EditText IDtaker = (EditText) findViewById(R.id.idTaker);
         final Spinner monsters = (Spinner)findViewById(R.id.monsterSpinner);
         final ImageView monsterPic = (ImageView) findViewById(R.id.monsterPic);
+        final TextView monsterAtt = (TextView) findViewById(R.id.monsterAttribute);
         final ImageView mclassPic = (ImageView) findViewById(R.id.monsterClass);
-
-
+        final TextView servantAttribute =(TextView) findViewById(R.id.servantAttribute);
+        final ImageView buster = (ImageView) findViewById(R.id.busterButton);
+        final ImageView arts = (ImageView) findViewById(R.id.artsButton);
+        final ImageView quick = (ImageView) findViewById(R.id.quickButton);
+        final Button undo = (Button) findViewById(R.id.undoButton);
         ArrayAdapter<String>adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,options);
         IDtaker.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_NUMBER); //block special characters
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -51,252 +60,294 @@ public class dmg_calculator extends AppCompatActivity{
                         urlImg = "icons/enemy/enemy_009-01.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Man");
                         break;
                     case 1:
                         monsterClass ="archer";
                         urlImg = "icons/enemy/enemy_009-03.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Man");
                         break;
                     case 2:
                         monsterClass="lancer";
                         urlImg = "icons/enemy/enemy_009-02.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Man");
                         break;
                     case 3:
                         monsterClass ="saber";
                         urlImg = "icons/enemy/enemy_011-01.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Man");
                         break;
                     case 4:
                         monsterClass="lancer";
                         urlImg = "icons/enemy/enemy_011-02.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Man");
                         break;
                     case 5:
                         monsterClass ="saber";
                         urlImg = "icons/enemy/enemy_019-01.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Man");
                         break;
                     case 6:
                         monsterClass ="archer";
                         urlImg = "icons/enemy/enemy_019-03.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Man");
                         break;
                     case 7:
                         monsterClass="lancer";
                         urlImg = "icons/enemy/enemy_019-02.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Man");
                         break;
                     case 8:
                         monsterClass ="saber";
                         urlImg = "icons/enemy/enemy_037-01.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Man");
                         break;
                     case 9:
                         monsterClass ="archer";
                         urlImg = "icons/enemy/enemy_037-03.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Man");
                         break;
                     case 10:
                         monsterClass="berserker";
                         urlImg = "icons/enemy/enemy_037-07.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Man");
                         break;
                     case 11:
                         monsterClass="caster";
                         urlImg = "icons/enemy/enemy_089-05.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Man");
                         break;
                     case 12:
                         monsterClass ="saber";
                         urlImg = "icons/enemy/enemy_089-01.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Man");
                         break;
                     case 13:
                         monsterClass ="archer";
                         urlImg = "icons/enemy/enemy_089-03.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Man");
                         break;
                     case 14:
                         monsterClass="lancer";
                         urlImg = "icons/enemy/enemy_089-02.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Man");
                         break;
                     case 15:
                         monsterClass ="saber";
                         urlImg = "icons/enemy/enemy_044.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Man");
                         break;
                     case 16:
                         monsterClass ="archer";
                         urlImg = "icons/enemy/enemy_044.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Man");
                         break;
                     case 17:
                         monsterClass="lancer";
                         urlImg = "icons/enemy/enemy_044.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Man");
                         break;
                     case 18:
                         monsterClass="assassin";
                         urlImg = "icons/enemy/enemy_022.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Sky");
                         break;
                     case 19:
                         monsterClass="rider";
                         urlImg = "icons/enemy/enemy_013.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Earth");
                         break;
                     case 20:
                         monsterClass="rider";
                         urlImg = "icons/enemy/enemy_039.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Earth");
                         break;
                     case 21:
                         monsterClass ="saber";
                         urlImg = "icons/enemy/enemy_036.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Earth");
                         break;
                     case 22:
                         monsterClass="lancer";
                         urlImg = "icons/enemy/enemy_036.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Earth");
                         break;
                     case 23:
                         monsterClass="assassin";
                         urlImg = "icons/enemy/enemy_036.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Earth");
                         break;
                     case 24:
                         monsterClass="rider";
                         urlImg = "icons/enemy/enemy_062.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Earth");
                         break;
                     case 25:
                         monsterClass="berserker";
                         urlImg = "icons/enemy/enemy_030.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Earth");
                         break;
                     case 26:
                         monsterClass="caster";
                         urlImg = "icons/enemy/enemy_026.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Sky");
                         break;
                     case 27:
                         monsterClass="lancer";
                         urlImg = "icons/enemy/enemy_041.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Sky");
                         break;
                     case 28:
                         monsterClass="berserker";
                         urlImg = "icons/enemy/enemy_027.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Sky");
                         break;
                     case 29:
                         monsterClass="assassin";
                         urlImg = "icons/enemy/enemy_079.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Sky");
                         break;
                     case 30:
                         monsterClass="saber";
                         urlImg = "icons/enemy/enemy_082.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Sky");
                         break;
                     case 31:
                         monsterClass ="archer";
                         urlImg = "icons/enemy/enemy_086.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Man");
                         break;
                     case 32:
                         monsterClass="caster";
                         urlImg = "icons/enemy/enemy_073.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Sky");
                         break;
                     case 33:
                         monsterClass="assassin";
                         urlImg = "icons/enemy/enemy_090.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Earth");
                         break;
                     case 34:
                         monsterClass ="archer";
                         urlImg = "icons/enemy/enemy_091.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Earth");
                         break;
                     case 35:
                         monsterClass="lancer";
                         urlImg = "icons/enemy/enemy_092.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Earth");
                         break;
                     case 36:
                         monsterClass ="saber";
                         urlImg = "icons/enemy/enemy_093.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Earth");
                         break;
                     case 37:
                         monsterClass="assassin";
                         urlImg = "icons/enemy/enemy_106.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Man");
                         break;
                     case 38:
                         monsterClass="assassin";
                         urlImg = "icons/enemy/enemy_107.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Man");
                         break;
                     case 39:
                         monsterClass="assassin";
                         urlImg = "icons/enemy/enemy_108.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Man");
                         break;
                     case 40:
                         monsterClass="rider";
                         urlImg = "icons/enemy/enemy_115.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Earth");
                         break;
                     case 41:
                         monsterClass ="archer";
                         urlImg = "icons/enemy/enemy_118.png";
                         setMonsterC(monsterClass);
                         setMonsterUrl(urlImg);
+                        setMonsterAttribute("Earth");
                         break;
 
                 }
@@ -348,6 +399,34 @@ public class dmg_calculator extends AppCompatActivity{
                                 Portrait pic2 = new Portrait();
                                 pic2.setImage(monsterPic);
                                 pic2.execute(getMonsterUrl());
+                                servantAttribute.setText("Attribute:\n" +newServant.getAttribute());
+                                mclassPic.setImageResource(monsterCPic());
+                                monsterAtt.setText("Attribute: \n" + getMonsterA());
+                                buster.setVisibility(buster.VISIBLE);
+                                arts.setVisibility(arts.VISIBLE);
+                                quick.setVisibility(quick.VISIBLE);
+                                undo.setVisibility(undo.VISIBLE);
+                                buster.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        if(cards.size() < 3)
+                                            cards.push(1);
+                                    }
+                                });
+                                arts.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        if(cards.size() < 3)
+                                            cards.push(2);
+                                    }
+                                });
+                                quick.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        if(cards.size() < 3)
+                                            cards.push(3);
+                                    }
+                                });
                                 //int drawableLocation = getResources().getIdentifier("drawable/" + newServant.classIcon(), null, null);
                                 //Log.e("IMPORTANTE", newServant.getServantClass());
                                 int drawableLocation = dmg_calculator.this.getResources().getIdentifier(newServant.classIcon(), "drawable", dmg_calculator.this.getPackageName());
@@ -369,6 +448,11 @@ public class dmg_calculator extends AppCompatActivity{
     {
         this.monsterUrl = monsterUrl;
     }
+
+    public void setMonsterAttribute(String monsterA) {
+        this.monsterA = monsterA;
+    }
+
     public int monsterCPic()
     {
         String location = "";
@@ -395,6 +479,10 @@ public class dmg_calculator extends AppCompatActivity{
     }
     public String getMonsterC() {
         return monsterC;
+    }
+
+    public String getMonsterA() {
+        return monsterA;
     }
 
     public String getMonsterUrl() {

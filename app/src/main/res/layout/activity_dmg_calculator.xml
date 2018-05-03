@@ -34,8 +34,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"/>
     <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:id="@+id/monsterClass"
             app:layout_constraintTop_toTopOf="@+id/monsterPic"
             app:layout_constraintRight_toLeftOf="@+id/monsterPic"
@@ -44,6 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/monsterAttribute"
+            android:gravity="center"
             app:layout_constraintTop_toBottomOf="@+id/monsterClass"
             android:layout_marginTop="16dp"
             app:layout_constraintRight_toLeftOf="@+id/monsterPic"
@@ -69,6 +70,7 @@
             android:id = "@+id/servantAttribute"
             app:layout_constraintTop_toBottomOf="@+id/class_icon"
             android:gravity="center"
+            android:layout_marginTop="16dp"
             app:layout_constraintLeft_toRightOf="@+id/calcStart"
             app:layout_constraintRight_toLeftOf="@+id/servantPic"
             />
@@ -100,5 +102,72 @@
             app:layout_constraintTop_toBottomOf="parent"
             app:layout_constraintBottom_toTopOf="@id/idTaker"
             android:id="@+id/monsterSpinner"/>
-
+    <ScrollView
+            android:layout_width="200dp"
+            android:layout_height="120dp"
+            app:layout_constraintRight_toLeftOf="@+id/monsterSpinner"
+            app:layout_constraintTop_toTopOf="@id/monsterSpinner"
+            android:layout_marginBottom="70dp"
+            app:layout_constraintLeft_toLeftOf="parent">
+    <TextView
+            android:id="@+id/battleLog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toLeftOf="@+id/monsterSpinner"
+            app:layout_constraintTop_toTopOf="@id/monsterSpinner"
+            android:layout_marginBottom="70dp"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+    </ScrollView>
+    <TextView
+            android:id="@+id/cardLog"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/monsterSpinner"
+            />
+    <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/arts"
+            android:id="@+id/artsButton"
+            android:visibility="invisible"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/cardLog"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/servantPic"/>
+    <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/buster"
+            android:id="@+id/busterButton"
+            android:visibility="invisible"
+            app:layout_constraintRight_toLeftOf="@id/artsButton"
+            app:layout_constraintLeft_toRightOf="@id/cardLog"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/servantPic"/>
+    <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/quick"
+            android:id="@+id/quickButton"
+            android:visibility="invisible"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/artsButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/servantPic"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/undoButton"
+            android:text = "Undo Card Selection"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/artsButton"
+            app:layout_constraintLeft_toLeftOf="@id/busterButton"
+            app:layout_constraintRight_toRightOf="parent"/>
 </android.support.constraint.ConstraintLayout>
