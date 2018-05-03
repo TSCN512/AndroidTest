@@ -9,7 +9,7 @@
 
     <android.support.v7.widget.Toolbar
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:theme="?attr/actionBarTheme"
             android:minHeight="?attr/actionBarSize"
@@ -26,4 +26,5 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"/>
+
 </android.support.constraint.ConstraintLayout>

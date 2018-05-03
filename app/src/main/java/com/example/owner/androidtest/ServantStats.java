@@ -32,6 +32,7 @@ public class ServantStats extends AppCompatActivity
         ET.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_NUMBER);
         final Button submit = (Button) findViewById(R.id.servantButton);
         final TextView TV = (TextView) findViewById(R.id.textView);
+        final TextView traits = (TextView) findViewById(R.id.traits);
         final ImageView IV = (ImageView) findViewById(R.id.imageView);
         submit.setOnClickListener(new View.OnClickListener()
         {
@@ -49,6 +50,7 @@ public class ServantStats extends AppCompatActivity
                 {
                     Servant newServant = new Servant(ID);
                     TV.setText(newServant.toString());
+                    traits.setText("Traits: \n" + newServant.getTraits());
                     Portrait pic = new Portrait();
                     pic.setImage(IV);
                     pic.execute(newServant.getImageURL());

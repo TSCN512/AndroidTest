@@ -142,7 +142,7 @@ public class Servant
     {
         this.traits = traits;
     }
-
+    public String getTraits() { return this.traits; }
     @Override
     public String toString()
     {
@@ -151,11 +151,12 @@ public class Servant
             String info = "";
             for (int i= 0; i<stats.length-2; i++)
                 info += stats[i] + '\n';
-            info+= traits;
+
             info = info.trim();
             return info;
         }
         else
             return specialMsg;
     }
+
 }
