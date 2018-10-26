@@ -16,7 +16,7 @@ public class Servant
     String imageURL;
     public Servant(int ID)
     {
-        String[] myArray = {"Name: ","Alias: ","Class: ", "ID: ", "Rarity: ", "Cost: ", "Max Level Cap: ", "Starting ATK: ", "Starting HP: ", "Max Level ATK: ", "Max Level HP: ", "","","",""};
+        String[] myArray = {"Name: ","Alias: ","Class: ", "ID: ", "Rarity: ", "Cost: ", "Max Level Cap: ", "Starting ATK: ", "Starting HP: ", "Max Level ATK: ", "Max Level HP: ", "Level 100 ATK: ","Level 100 HP: ","",""};
         //myArray[0] = "READY";
         try {
             //we will concatenate the servant id part of the wiki after reading user input
@@ -142,20 +142,21 @@ public class Servant
     {
         this.traits = traits;
     }
-
+    public String getTraits() { return this.traits; }
     @Override
     public String toString()
     {
         if(!special)
         {
             String info = "";
-            for (String value : stats)
-                info += value + '\n';
-            info+= traits;
+            for (int i= 0; i<stats.length-2; i++)
+                info += stats[i] + '\n';
+
             info = info.trim();
             return info;
         }
         else
             return specialMsg;
     }
+
 }

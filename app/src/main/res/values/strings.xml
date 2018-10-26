@@ -1,8 +1,16 @@
 <resources>
-    <string name="app_name">AndroidTest</string>
+    <string name="app_name">Chaldea Solutions</string>
     <string name="title_activity_servant_stats">ServantStats</string>
     <string name="idHelp">Enter Servant ID Here</string>
     <string name="submit">Submit</string>
     <string name="portrait">A picture of the Servant</string>
     <string name="title_activity_summoning">Summoning</string>
+    <string name="dmgCalc">Damage Calculator</string>
+    <string name="featScreen">featureScreen</string>
+    <string name="feat1">Servant Lookup</string>
+    <string name="feat1_2">Lookup information about a Servant using its ID.</string>
+    <string name="feat2">Gacha Simulator</string>
+    <string name="feat2_2">Test your luck and calculate the cost.</string>
+    <string name="feat3">Damage Calculator</string>
+    <string name="feat3_2">See damage against varying enemy types.</string>
 </resources>

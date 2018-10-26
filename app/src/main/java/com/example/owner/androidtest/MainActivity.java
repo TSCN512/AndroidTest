@@ -8,7 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,9 +20,12 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_main);
 
-        ImageView imageView = (ImageView) findViewById(R.id.ib);
+        final Button feature1 = (Button) findViewById(R.id.feature1);
+        final Button feature2 = (Button) findViewById(R.id.feature2);
+        final Button feature3 = (Button) findViewById(R.id.feature3);
+        final TextView inProgress = (TextView) findViewById(R.id.inProgress);
+        //ImageView imageView = (ImageView) findViewById(R.id.imageView3);
         //imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        imageView.setAdjustViewBounds(true);
         /*Display display = getWindowManager().getDefaultDisplay();
         Point myPoint = new Point();
         display.getSize(myPoint);
@@ -37,11 +42,24 @@ public class MainActivity extends AppCompatActivity {
 
             StrictMode.setThreadPolicy(policy);
         }
-
-        imageView.setOnClickListener(new View.OnClickListener() {
+        feature1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ServantStats.class); //before was MainActivity.this, ServantStats.class
+                startActivity(intent);
+            }
+        });
+        feature2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Summoning.class); //before was MainActivity.this, ServantStats.class
+                startActivity(intent);
+            }
+        });
+        feature3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, dmg_calculator.class); //before was MainActivity.this, ServantStats.class
                 startActivity(intent);
             }
         });

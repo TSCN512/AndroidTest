@@ -16,6 +16,7 @@ public class Summoning extends Activity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_summoning);
+
         //getActionBar().setDisplayHomeAsUpEnabled(true);
         final Button summon10 = (Button) findViewById(R.id.summon10);
         final TextView TV1 = (TextView) findViewById(R.id.summoning_tv1);
@@ -23,37 +24,25 @@ public class Summoning extends Activity {
         final TextView TV3 = (TextView) findViewById(R.id.summoning_tv3);
         final ProgressBar progress = (ProgressBar)findViewById(R.id.progressBar);
         //final ImageView IV = (ImageView) findViewById(R.id.imageView);
-        final Gacha myGacha = new Gacha(progress, TV1, TV2, TV3);
-
+        final TextView TV4 = (TextView) findViewById(R.id.quartzCount);
+        final TextView TV5 = (TextView) findViewById(R.id.quartzCount2);
+        final Gacha myGacha = new Gacha(progress, TV1, TV2, TV3, summon10, TV4, TV5);
+        TV1.setText("5★ & 4★ Servants");
+        TV2.setText("5★ Craft Essences");
+        TV3.setText("Results Appear Here");
+        TV4.setText("Quartz Spent: ");
+        TV5.setText("Money Spent: ");
         summon10.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                TV1.setText("");
-                TV2.setText("");
+                summon10.setEnabled (false);
 
                 myGacha.tenPull();
-                myGacha.execute();
-                try {
-                    Thread.sleep(6000);
+                new Gacha_task().execute(myGacha);
 
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                TV3.setText(myGacha.getLastResult());
-                for (String value : myGacha.getSSR_Servants())
-                {
-                    TV1.append(value + '\n');
-                }
-                for(String value : myGacha.getSR_Servants())
-                {
-                    TV1.append(value + '\n');
-                }
-                for(String value : myGacha.getSSR_CEs())
-                {
-                    TV2.append(value + '\n');
-                }
+
 
             }
         });
