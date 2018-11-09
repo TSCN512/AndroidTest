@@ -1,4 +1,4 @@
-# AndroidTest
+# Chaldea Solutions
 Companion App for Fate/Grand Order
 
 This app has three main features:
