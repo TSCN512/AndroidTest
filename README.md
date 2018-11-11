@@ -1,5 +1,5 @@
 # Chaldea Solutions
-Companion App for Fate/Grand Order
+Android Companion App for Fate/Grand Order
 
 This app has three main features:
 1. Gachapon Simulator 
